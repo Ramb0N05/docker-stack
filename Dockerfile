@@ -1,4 +1,4 @@
-FROM php:${PHP_VERSION}-apache
+FROM php:8-apache
 ARG DOMAIN=www.example.com
 ARG MAIL=webmaster@localhost
 
