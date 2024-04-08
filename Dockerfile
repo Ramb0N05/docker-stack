@@ -13,7 +13,7 @@ ARG SMTP_USE_STARTTLS=NO
 
 RUN apt-get update
 RUN apt-get install -y zlib1g-dev libbz2-dev libzip-dev ssmtp mailutils
-RUN printf "error_reporting ${PHP_ERROR_REPORTING}" > /usr/local/etc/php/conf.d/error-reporting.ini
+RUN printf "error_reporting=${PHP_ERROR_REPORTING}" > /usr/local/etc/php/conf.d/error-reporting.ini
 RUN printf "sendmail_path=/usr/sbin/ssmtp -t" > /usr/local/etc/php/conf.d/sendmail.ini
 RUN docker-php-ext-install bcmath bz2 mysqli pdo pdo_mysql zip
 RUN rm -rf /var/lib/apt/lists/*
