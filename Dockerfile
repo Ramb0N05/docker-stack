@@ -3,6 +3,7 @@ ARG DOMAIN=www.example.com
 ARG MAIL_ADMIN=webmaster@localhost
 ARG MAIL_DOMAIN
 ARG MAIL_FROM
+ARG PHP_ERROR_REPORTING=E_ALL
 ARG SMTP_AUTH_USER
 ARG SMTP_AUTH_PASS
 ARG SMTP_SERVER
@@ -12,7 +13,7 @@ ARG SMTP_USE_STARTTLS=NO
 
 RUN apt-get update
 RUN apt-get install -y zlib1g-dev libbz2-dev libzip-dev ssmtp mailutils
-RUN printf "error_reporting E_NONE" > /usr/local/etc/php/conf.d/disable-warnings.ini
+RUN printf "error_reporting ${PHP_ERROR_REPORTING}" > /usr/local/etc/php/conf.d/error-reporting.ini
 RUN printf "sendmail_path=/usr/sbin/ssmtp -t" > /usr/local/etc/php/conf.d/sendmail.ini
 RUN docker-php-ext-install bcmath bz2 mysqli pdo pdo_mysql zip
 RUN rm -rf /var/lib/apt/lists/*
