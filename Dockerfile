@@ -2,6 +2,7 @@ FROM php:8-apache
 ARG DOMAIN=www.example.com
 ARG MAIL_ADMIN=webmaster@localhost
 ARG MAIL_DOMAIN
+ARG MAIL_FROM
 ARG MAIL_POSTMASTER=postmaster@localhost
 ARG SMTP_AUTH_USER
 ARG SMTP_AUTH_PASS
