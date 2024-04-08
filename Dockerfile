@@ -26,8 +26,8 @@ RUN sed -i "s/root=postmaster/root=${MAIL_POSTMASTER}/g" /etc/ssmtp/ssmtp.conf
 RUN sed -i "s/mailhub=mail/mailhub=${SMTP_SERVER}:${SMTP_PORT}/g" /etc/ssmtp/ssmtp.conf
 RUN sed -i "s/#rewriteDomain=/rewriteDomain=${MAIL_DOMAIN}/g" /etc/ssmtp/ssmtp.conf
 RUN sed -i "s/#FromLineOverride=YES/FromLineOverride=YES/g" /etc/ssmtp/ssmtp.conf
-RUN printf "\nUseTLS=${SMTP_USE_TLS}\nUseSTARTTLS=${SMTP_USE_STARTTLS}\n" > /etc/ssmtp/ssmtp.conf
-RUN printf "\nAuthUser=${SMTP_AUTH_USER}\nAuthPass=${SMTP_AUTH_PASS}" > /etc/ssmtp/ssmtp.conf
+RUN printf "\nUseTLS=${SMTP_USE_TLS}\nUseSTARTTLS=${SMTP_USE_STARTTLS}\n" >> /etc/ssmtp/ssmtp.conf
+RUN printf "\nAuthUser=${SMTP_AUTH_USER}\nAuthPass=${SMTP_AUTH_PASS}" >> /etc/ssmtp/ssmtp.conf
 
 EXPOSE 80
 WORKDIR /var/www/html
