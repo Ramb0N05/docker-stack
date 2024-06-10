@@ -1,5 +1,7 @@
 FROM wordpress:php8.0-apache
 
+ARG DOMAIN=www.example.com
+ARG ADMIN_MAIL=webmaster@localhost
 ARG MEMCACHED_ALLOW_FAILOVER=1
 ARG MEMCACHED_MAX_FAILOVER_ATTEMPTS=20
 ARG MEMCACHED_CHUNK_SIZE=32768
@@ -38,9 +40,9 @@ RUN curl https://raw.githubusercontent.com/W3EDGE/w3-total-cache/2.2.7/ini/apach
 RUN curl https://raw.githubusercontent.com/W3EDGE/w3-total-cache/2.2.7/ini/apache_conf/mod_rewrite.conf --output /etc/apache2/conf-available/w3-rewrite.conf
 RUN a2enconf docker-php w3-*
 
-RUN printf "ServerName ${DOMAIN:-www.example.com}" > /etc/apache2/conf-available/server-name.conf
-RUN sed -i "s/#ServerName www.example.com/ServerName ${DOMAIN:-www.example.com}/g" /etc/apache2/sites-available/000-default.conf
-RUN sed -i "s/webmaster@localhost/${ADMIN_MAIL:-webmaster@localhost}/g" /etc/apache2/sites-available/000-default.conf
+RUN printf "ServerName ${DOMAIN}" > /etc/apache2/conf-available/server-name.conf
+RUN sed -i "s/#ServerName www.example.com/ServerName ${DOMAIN}/g" /etc/apache2/sites-available/000-default.conf
+RUN sed -i "s/webmaster@localhost/${ADMIN_MAIL}/g" /etc/apache2/sites-available/000-default.conf
 RUN a2enconf server-name
 
 EXPOSE 80
