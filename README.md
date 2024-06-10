@@ -1,1 +1,1 @@
-# windKanal e.V. - Docker Stack
+# Web - Container
