@@ -1,4 +1,4 @@
-FROM nextcloud:${NEXTCLOUD_VERSION}
+FROM nextcloud:24-apache
 RUN apt-get update
 RUN apt-get install -y libmagickwand-dev --no-install-recommends
 RUN rm -rf /var/lib/apt/lists/*
