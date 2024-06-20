@@ -1,10 +1,10 @@
 FROM osixia/openldap:stable
 
-RUN apt-get update
+RUN apt-get update || true
 RUN apt-get install -y --no-install-recommends git
 
 RUN cd /tmp && git clone https://github.com/debops/debops.git
-RUN apt purge -y git && apt autoremove -y
+RUN apt-get purge -y git && apt-get autoremove -y
 
 RUN mkdir /etc/ldap/schema/debops
 RUN cp -R /tmp/debops/ansible/roles/slapd/files/etc/ldap/schema/debops/* /etc/ldap/schema/debops/
