@@ -31,7 +31,7 @@ RUN apt-get update -y --fix-missing && apt-get upgrade -y
 RUN apt-get install -y --no-install-recommends zip unzip libmemcached-dev zlib1g-dev msmtp mailutils libldb-dev libldap2-dev
 RUN apt-get autoremove -y && apt-get autoclean -y
 RUN rm -rf /var/lib/apt/lists/*
-RUN pecl install memcached
+#RUN pecl install memcached
 RUN pecl install memcache
 RUN pecl install redis
 
