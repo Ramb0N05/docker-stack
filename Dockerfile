@@ -47,7 +47,7 @@ RUN printf "extension=memcache.so\n\n memcache.allow_failover = ${MEMCACHED_ALLO
 RUN printf 'session.save_handler = ${MEMCACHED_SAVE_HANDLER}\n session.save_path = "${MEMCACHED_SAVE_PATH}"' > /usr/local/etc/php/conf.d/w3-memcache.ini
 RUN printf "opcache.enable = ${OPCACHE_ENABLE}\n opcache.fast_shutdown = ${OPCACHE_FAST_SHUTDOWN}\n opcache.enable_file_override = ${OPCACHE_ENABLE_FILE_OVERRIDE}\n opcache.validate_timestamps = ${OPCACHE_VALIDATE_TIMESTAMPS}\n opcache.max_file_size = ${OPCACHE_MAX_FILE_SIZE}" > /usr/local/etc/php/conf.d/w3-opcache.ini
 RUN printf "extension=redis.so" > /usr/local/etc/php/conf.d/docker-php-ext-redis.ini
-RUN printf "extension=php_ldap.so" > /usr/local/etc/php/conf.d/docker-php-ext-ldap.ini
+RUN printf "extension=ldap.so" > /usr/local/etc/php/conf.d/docker-php-ext-ldap.ini
 
 RUN ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 RUN chown -R www-data: /var/mail
