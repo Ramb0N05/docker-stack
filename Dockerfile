@@ -15,7 +15,7 @@ RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN printf "HOST ${LDAP_HOST}\nPORT ${LDAP_PORT}\nBASE ${LDAP_BASE}\nBINDDN ${LDAP_BIND_DN}\nBINDPW ${LDAP_BIND_PASS}\nPAM_FILTER ${LDAP_PAM_FILTER}\nPAM_LOGIN_ATTRIBUTE ${LDAP_PAM_LOGIN_ATTR}\nPAM_MEMBER_ATTRIBUTE ${LDAP_PAM_MEMBER_ATTR}\n" >> /etc/ldap/ldap.conf
+RUN printf "HOST ${LDAP_HOST}\nPORT ${LDAP_PORT}\nBASE ${LDAP_BASE}\nBINDDN ${LDAP_BIND_DN}\nBINDPW ${LDAP_BIND_PASS}\nPAM_FILTER ${LDAP_PAM_FILTER}\nPAM_LOGIN_ATTRIBUTE ${LDAP_PAM_LOGIN_ATTR}\nPAM_MEMBER_ATTRIBUTE ${LDAP_PAM_MEMBER_ATTR}\n" > /etc/ldap/ldap.conf
 RUN printf "auth required pam_ldap.so\nauth required pam_user_map.so\naccount required pam_ldap.so\n" > /etc/pam.d/mariadb
 
 EXPOSE 3306
