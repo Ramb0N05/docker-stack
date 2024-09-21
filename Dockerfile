@@ -20,6 +20,7 @@ RUN sed -i "s@%LDAP_BIND_DN%@${LDAP_BIND_DN}@g" /etc/nslcd.conf
 RUN sed -i "s@%LDAP_BIND_PASS%@${LDAP_BIND_PASS}@g" /etc/nslcd.conf
 
 RUN printf "auth required pam_ldap.so\nauth required pam_warn.so\nauth required pam_user_map.so\naccount required pam_ldap.so\naccount required pam_warn.so\n" > /etc/pam.d/mariadb
+RUN ln -s /etc/pam.d/mariadb /etc/pam.d/mysql
 
 EXPOSE 3306
 ENTRYPOINT ["docker-entrypoint.sh"]
