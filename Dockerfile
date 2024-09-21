@@ -15,10 +15,10 @@ RUN apt-get autoclean -y
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN curl https://raw.githubusercontent.com/windKanal/docker-stack/refs/heads/mariadb/nslcd.conf --output /etc/nslcd.conf
-RUN sed -i "s/%LDAP_URI%/${LDAP_URI}/g" /etc/nslcd.conf
-RUN sed -i "s/%LDAP_BASE%/${LDAP_BASE}/g" /etc/nslcd.conf
-RUN sed -i "s/%LDAP_BIND_DN%/${LDAP_BIND_DN}/g" /etc/nslcd.conf
-RUN sed -i "s/%LDAP_BIND_PASS%/${LDAP_BIND_PASS}/g" /etc/nslcd.conf
+RUN sed -i "s@%LDAP_URI%@${LDAP_URI}@g" /etc/nslcd.conf
+RUN sed -i "s@%LDAP_BASE%@${LDAP_BASE}@g" /etc/nslcd.conf
+RUN sed -i "s@%LDAP_BIND_DN%/@${LDAP_BIND_DN}@g" /etc/nslcd.conf
+RUN sed -i "s@%LDAP_BIND_PASS%@${LDAP_BIND_PASS}@g" /etc/nslcd.conf
 
 RUN printf "auth required pam_ldap.so\nauth required pam_user_map.so\naccount required pam_ldap.so\n" > /etc/pam.d/mariadb
 
