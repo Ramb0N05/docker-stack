@@ -8,10 +8,9 @@ ARG LDAP_PAM_FILTER=objectClass=inetOrgPerson
 ARG LDAP_PAM_LOGIN_ATTR=uid
 ARG LDAP_PAM_MEMBER_ATTR=uniqueMember
 
-RUN apt-get update -y --fix-missing
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y curl ldap-utils libpam-ldapd --no-install-recommends
-RUN apt-get autoremove -y
-RUN apt-get autoclean -y
+RUN apt-get update -y --fix-missing && apt-get upgrade -y
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y curl ldap-utils libpam-ldapd libmariadbclient18 --no-install-recommends
+RUN apt-get autoremove -y && apt-get autoclean -y
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN curl https://raw.githubusercontent.com/windKanal/docker-stack/refs/heads/mariadb/nslcd.conf --output /etc/nslcd.conf
