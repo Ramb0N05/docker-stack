@@ -9,6 +9,7 @@ ARG LDAP_PAM_FILTER=objectClass=inetOrgPerson
 ARG LDAP_PAM_LOGIN_ATTR=uid
 ARG LDAP_PAM_MEMBER_ATTR=uniqueMember
 
+RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y --fix-missing
 RUN apt-get install -y ldap-utils libpam-ldapd --no-install-recommends
 RUN apt-get autoremove -y
