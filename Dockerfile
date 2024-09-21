@@ -12,7 +12,7 @@ ARG PHP_MEMORY_LIMIT=512M
 ARG PHP_UPLOAD_LIMIT=512M
 
 RUN apt-get update
-RUN apt-get install -y ffmpeg libmagickwand-dev libreoffice --no-install-recommends
+RUN apt-get install -y sudo ffmpeg libmagickwand-dev libreoffice --no-install-recommends
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN printf "opcache.enable = ${OPCACHE_ENABLE}\nopcache.save_comments = ${OPCACHE_SAVE_COMMENTS}\nopcache.revalidate_freq = ${OPCACHE_REVALIDATE_FREQ}\nopcache.memory_consumption = ${OPCACHE_MEMORY_CONSUMPTION}\nopcache.jit = ${OPCACHE_JIT}\nopcache.jit_buffer_size = ${OPCACHE_JIT_BUFFER_SIZE}" > /usr/local/etc/php/conf.d/w3-opcache.ini
