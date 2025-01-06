@@ -29,7 +29,7 @@ RUN set -eux
 
 RUN apt-get update -y --fix-missing
 RUN apt-get upgrade -y
-RUN apt-get install -y --no-install-recommends zip unzip libmemcached-dev zlib1g-dev msmtp mailutils libldb-dev libldap2-dev libmemcached-dev libssl-dev
+RUN apt-get install -y --no-install-recommends zip unzip libmemcached-dev zlib1g-dev msmtp mailutils libmemcached-dev libssl-dev
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN rm -rf /var/lib/apt/lists/*
@@ -37,11 +37,9 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN pecl install --configureoptions 'with-libmemcached-dir="/usr"' memcached
 RUN pecl install memcache
 RUN pecl install redis
-RUN docker-php-ext-install ldap
 
 RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable redis
-RUN docker-php-ext-enable ldap
 
 RUN printf "extension=memcache.so\n\n memcache.allow_failover = ${MEMCACHED_ALLOW_FAILOVER}\n memcache.max_failover_attempts = ${MEMCACHED_MAX_FAILOVER_ATTEMPTS}\n memcache.chunk_size = ${MEMCACHED_CHUNK_SIZE}\n memcache.default_port = ${MEMCACHED_DEFAULT_PORT}\n memcache.hash_strategy = ${MEMCACHED_HASH_STRATEGY}\n memcache.hash_function = ${MEMCACHED_HASH_FUNCTION}" > /usr/local/etc/php/conf.d/docker-php-ext-memcache.ini
 RUN printf 'session.save_handler = ${MEMCACHED_SAVE_HANDLER}\n session.save_path = "${MEMCACHED_SAVE_PATH}"' > /usr/local/etc/php/conf.d/w3-memcache.ini
