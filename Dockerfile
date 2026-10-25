@@ -1,4 +1,4 @@
-FROM nextcloud:33-apache
+FROM nextcloud:34-apache
 
 ARG DOMAIN=www.example.com
 ARG ADMIN_MAIL=webmaster@localhost
